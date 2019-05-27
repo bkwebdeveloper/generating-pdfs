@@ -11,13 +11,10 @@ hbs.registerHelper('dateFormat', function(value, format) {
 });
 
 const compile = async function(templateName, data){
-    console.log('working2');
 
     const filePath = path.join(process.cwd(), 'templates', `${templateName}.hbs`);
-    console.log('working3');
 
     const html = await fs.readFile(filePath, 'utf-8');
-    console.log('working4');
 
     return hbs.compile(html)(data);
 };
@@ -26,20 +23,16 @@ const compile = async function(templateName, data){
     try{
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
-        console.log('working1');
 
         const content = await compile('resume', data);
-        console.log('working5');
 
-        await page.setContent('<h1>content</h1>');
+        await page.setContent(content);
         await page.emulateMedia('screen');
         await page.pdf({
             path: 'mypdf.pdf',
             format: 'A4',
             printBackground: true
         });
-        console.log('working6');
-
         console.log('done');
         await browser.close();
         process.exit();
