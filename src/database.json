@@ -1,0 +1,23 @@
+{
+    "name": {
+        "first": "Bablu",
+        "last": "Kumar"
+    },
+    "work-experience": {
+        
+        "company1": {
+            "companyName": "Netlink Intelligence Pvt. Limited",
+            "workedFor": "6 months",
+            "position": "Digital Marketing Intern"
+        },
+        "company2": {
+            "companyName": "Lenskart",
+            "workedFor": "2 months",
+            "position": "Salesman"
+        }       
+    },
+    "hobby":{
+        "hobby1": "Reading Books",
+        "hobby2": "Exploring the Web"
+    }
+}
