@@ -11,21 +11,18 @@ hbs.registerHelper('dateFormat', function(value, format) {
 });
 
 const compile = async function(templateName, data){
-
     const filePath = path.join(process.cwd(), 'templates', `${templateName}.hbs`);
-
-    const html = await fs.readFile(filePath, 'utf-8');
-
+    const html = await fs.readFile(filePath, 'utf8');
     return hbs.compile(html)(data);
 };
 
-(async function() {
+(async () => {
     try{
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
 
         const content = await compile('resume', data);
-
+        console.log(content)
         await page.setContent(content);
         await page.emulateMedia('screen');
         await page.pdf({
@@ -35,8 +32,7 @@ const compile = async function(templateName, data){
         });
         console.log('done');
         await browser.close();
-        process.exit();
     } catch (e) {
         console.log('Error', e);
     }
-}());
+})();
